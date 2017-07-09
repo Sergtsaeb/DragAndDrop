@@ -12,6 +12,7 @@
 		C0AE31CF1F11DEAD00FCA236 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C0AE31CD1F11DEAD00FCA236 /* Main.storyboard */; };
 		C0AE31D11F11DEAD00FCA236 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C0AE31D01F11DEAD00FCA236 /* Assets.xcassets */; };
 		C0AE31D41F11DEAD00FCA236 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C0AE31D21F11DEAD00FCA236 /* LaunchScreen.storyboard */; };
+		C0AE31DC1F11DF4100FCA236 /* FontsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0AE31DB1F11DF4100FCA236 /* FontsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,7 @@
 		C0AE31D01F11DEAD00FCA236 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C0AE31D31F11DEAD00FCA236 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C0AE31D51F11DEAD00FCA236 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C0AE31DB1F11DF4100FCA236 /* FontsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FontsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +58,7 @@
 			children = (
 				C0AE31C91F11DEAD00FCA236 /* AppDelegate.swift */,
 				C0AE31CB1F11DEAD00FCA236 /* ViewController.swift */,
+				C0AE31DB1F11DF4100FCA236 /* FontsViewController.swift */,
 				C0AE31CD1F11DEAD00FCA236 /* Main.storyboard */,
 				C0AE31D01F11DEAD00FCA236 /* Assets.xcassets */,
 				C0AE31D21F11DEAD00FCA236 /* LaunchScreen.storyboard */,
@@ -138,6 +141,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C0AE31CC1F11DEAD00FCA236 /* ViewController.swift in Sources */,
+				C0AE31DC1F11DF4100FCA236 /* FontsViewController.swift in Sources */,
 				C0AE31CA1F11DEAD00FCA236 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
