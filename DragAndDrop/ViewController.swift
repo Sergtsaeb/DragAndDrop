@@ -9,16 +9,20 @@
 import UIKit
 
 class ViewController: UIViewController {
+    
+    @IBOutlet weak var postcard: UIImageView!
+    
+    @IBOutlet weak var colorSelection: UICollectionView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
+//        self.colorSelection.dataSource = self
+//        self.colorSelection.delegate = self
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
+    
+    
+    
 
 
 }
