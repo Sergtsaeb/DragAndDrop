@@ -17,13 +17,13 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        colorGenerator()
         
         self.colorSelection.dataSource = self
         self.colorSelection.delegate = self
     }
     
     func colorGenerator() {
-        
         colors += [.black, .gray, .white, .yellow, .orange, .red, .magenta, .purple, .blue, .cyan, .green]
         
         for i in 0...9 {
@@ -34,6 +34,21 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
             
         }
         
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return colors.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        let cell = colorSelection.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath)
+        cell.backgroundColor = colors[indexPath.row]
+        
+        cell.layer.borderWidth = 1
+        cell.layer.cornerRadius = 5
+        
+        return cell
     }
     
 
