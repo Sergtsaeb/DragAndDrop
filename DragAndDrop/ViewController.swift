@@ -14,6 +14,15 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     @IBOutlet weak var colorSelection: UICollectionView!
     
     var colors = [UIColor]()
+    var image = UIImage()
+    
+    var topText = "Visit the Northern Lights"
+    var topFontName = "Helvetica Neue"
+    var topColor = UIColor.white
+    
+    var bottomText = "Home of Sherlock Holmes, Paddington Bear, and James Bond"
+    var bottomFontName = "Helvetica Neue"
+    var bottomColor = UIColor.white
     
     override func viewDidLoad() {
         super.viewDidLoad()

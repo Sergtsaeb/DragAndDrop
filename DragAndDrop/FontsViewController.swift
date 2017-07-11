@@ -11,15 +11,12 @@ import UIKit
 class FontsViewController: UITableViewController {
     
     let fonts = UIFont.familyNames.sorted()
-    
-    
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         
     }
-
   
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return fonts.count
