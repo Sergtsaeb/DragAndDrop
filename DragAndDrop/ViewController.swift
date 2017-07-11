@@ -31,9 +31,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
                 let color = UIColor(hue: CGFloat(i)/10, saturation: CGFloat(j)/10, brightness: 1, alpha: 1)
                 colors.append(color)
             }
-            
         }
-        
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
