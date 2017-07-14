@@ -14,7 +14,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     @IBOutlet weak var colorSelection: UICollectionView!
     
     var colors = [UIColor]()
-    var image = UIImage()
+    var image: UIImage?
     
     var topText = "Visit the Northern Lights"
     var topFontName = "Helvetica Neue"
@@ -46,7 +46,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     
     func renderPostcard() {
         
-        //placing in view
+        //define placing in view
         let drawRect = CGRect(x: 0, y: 0, width: 3000, height: 2400)
         let topTextRect = CGRect(x: 250, y: 200, width: 2500, height: 800)
         let bottomTextRect = CGRect(x: 250, y: 1800, width: 2500, height: 600)
@@ -59,18 +59,23 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         let centered = NSMutableParagraphStyle()
         centered.alignment = .center
         
-        let topTextAttributes: [NSAttributedStringKey: Any] = [.foregroundColor: topColor, .font: topFont, .paragraphStyle: centered]
-        let bottomTextAttributes: [NSAttributedStringKey: Any] = [.foregroundColor: bottomColor, .font: bottomFont, .paragraphStyle: centered]
+        let topTextAttributes: [NSAttributedStringKey: Any] =
+            [.foregroundColor: topColor, .font: topFont, .paragraphStyle:
+                centered]
+        let bottomTextAttributes: [NSAttributedStringKey: Any] =
+            [.foregroundColor: bottomColor, .font:
+                bottomFont, .paragraphStyle: centered]
         
+        //rendering image the correct size
         let renderer = UIGraphicsImageRenderer(size: drawRect.size)
         postcard.image = renderer.image(actions: { (ctx) in
             UIColor.gray.set()
             ctx.fill(drawRect)
             
-            image.draw(at: CGPoint(x: 0, y: 0))
+            image?.draw(at: CGPoint(x: 0, y: 0))
             
-            topText.draw(in: topTextRect, withAttributes: topTextAttributes)
-            bottomText.draw(in: bottomTextRect, withAttributes: bottomTextAttributes)
+            topText.draw(in: topTextRect, withAttributes: topTextAttributes as [String : Any])
+            bottomText.draw(in: bottomTextRect, withAttributes: bottomTextAttributes as [String : Any])
         })
         
         
