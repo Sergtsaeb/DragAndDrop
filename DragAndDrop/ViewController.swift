@@ -8,7 +8,8 @@
 
 import UIKit
 
-class ViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
+@available(iOS 11.0, *)
+class ViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDragDelegate, UIDropInteractionDelegate {
     
     @IBOutlet weak var postcard: UIImageView!
     @IBOutlet weak var colorSelection: UICollectionView!
@@ -31,6 +32,8 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         
         self.colorSelection.dataSource = self
         self.colorSelection.delegate = self
+        self.colorSelection.dragDelegate = self
+       
     }
     
     func colorGenerator() {
@@ -42,6 +45,14 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
                 colors.append(color)
             }
         }
+    }
+    
+    @available(iOS 11.0, *)
+    func dropInteraction() {
+        postcard.isUserInteractionEnabled = true
+        let dropInteraction = UIDropInteraction(delegate: self)
+        postcard.addInteraction(dropInteraction)
+        
     }
     
     func renderPostcard() {
@@ -60,11 +71,9 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         centered.alignment = .center
         
         let topTextAttributes: [NSAttributedStringKey: Any] =
-            [.foregroundColor: topColor, .font: topFont, .paragraphStyle:
-                centered]
+            [NSForegroundColorAttributeName as NSString: topColor, NSFontAttributeName as NSString: topFont, NSParagraphStyleAttributeName as NSString: centered]
         let bottomTextAttributes: [NSAttributedStringKey: Any] =
-            [.foregroundColor: bottomColor, .font:
-                bottomFont, .paragraphStyle: centered]
+            [NSForegroundColorAttributeName as NSString: bottomColor, NSFontAttributeName as NSString: bottomFont, NSParagraphStyleAttributeName as NSString: centered]
         
         //rendering image the correct size
         let renderer = UIGraphicsImageRenderer(size: drawRect.size)
@@ -77,16 +86,31 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
             topText.draw(in: topTextRect, withAttributes: topTextAttributes as [String : Any])
             bottomText.draw(in: bottomTextRect, withAttributes: bottomTextAttributes as [String : Any])
         })
-        
-        
     }
+    
+    func dropInteraction(_ interaction: UIDropInteraction,
+                         sessionDidUpdate session: UIDropSession) -> UIDropProposal {
+        return UIDropProposal(operation: .copy)
+    }
+    
+    func dropInteraction(_ interaction: UIDropInteraction,
+                         performDrop session: UIDropSession) {
+        let location = session.location(in: postcard)
+        if session.hasItemsConforming(toTypeIdentifiers:
+            [kUTTypePlainText as String]) {
+            // handle strings
+        } else if session.hasItemsConforming(toTypeIdentifiers:
+            [kUTTypeImage as String]) {
+            // handle images
+        } else {
+            // handle colors
+        } }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return colors.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
         let cell = colorSelection.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath)
         cell.backgroundColor = colors[indexPath.row]
         
@@ -95,6 +119,16 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         
         return cell
     }
+    
+    @available(iOS 11.0, *)
+    func collectionView(_ collectionView: UICollectionView, itemsForBeginning session: UIDragSession, at indexPath: IndexPath) -> [UIDragItem] {
+        let color = colors[indexPath.item]
+        let provider = NSItemProvider(object: color)
+        let item = UIDragItem(itemProvider: provider)
+        
+        return [item]
+    }
+    
     
 
 }
